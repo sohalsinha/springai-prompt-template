@@ -1,6 +1,9 @@
 package com.learning.openai.controller;
 
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.openai.OpenAiChatModel;
+import org.springframework.ai.openai.OpenAiChatOptions;
+import org.springframework.ai.openai.api.OpenAiApi;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +31,8 @@ public class PromptStuffingController {
 
         return chatClient
                 .prompt()
+                .options(OpenAiChatOptions.builder().model(OpenAiApi.ChatModel.GPT_5_CHAT_LATEST)
+                        .build())
                 .system(systemPromptTemplate)
                 .user(message)
                 .call()
