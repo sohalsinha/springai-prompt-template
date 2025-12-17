@@ -1,5 +1,6 @@
 package com.learning.openai.controller;
 
+import com.learning.openai.advisors.TokenUsageAuditAdvisor;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,7 @@ public class ChatController {
 
         return chatClient
                 .prompt()
+                //.advisors(new TokenUsageAuditAdvisor())
                 //Override the message of default system as shown below
                 /*.system("""
                                 You are an internal IT assistant, Your Role is to help\s

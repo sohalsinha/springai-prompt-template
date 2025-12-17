@@ -1,8 +1,12 @@
 package com.learning.openai.config;
 
+import com.learning.openai.advisors.TokenUsageAuditAdvisor;
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.List;
 
 @Configuration
 public class ChatClientConfig {
@@ -21,6 +25,7 @@ public class ChatClientConfig {
                                 Earned = 10
                                 Total 15 annually.                                
                                 """)
+                .defaultAdvisors(List.of(new SimpleLoggerAdvisor(),new TokenUsageAuditAdvisor()))
                 .build();
 
     }
